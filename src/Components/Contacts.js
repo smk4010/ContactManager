@@ -11,14 +11,14 @@ function getContactListItem(contact){
 }
 
 class Contacts extends Component {
-    constructor(props){
-      super(props);
-      this.state = {
-        contacts: []
-      }
-
-      this.onChange = this.onChange.bind(this);
+  constructor(props){
+    super(props);
+    this.state = {
+      contacts: []
     }
+
+    this.onChange = this.onChange.bind(this);
+  }
 
   componentWillMount(){
     AppStore.addChangeListener(this.onChange);
@@ -29,7 +29,7 @@ class Contacts extends Component {
   }
 
   componentWillUnmount(){
-    AppStore.removeChangeListener(this.onChange)
+    AppStore.removeChangeListener(this.onChange);
   }
 
   onChange(){
