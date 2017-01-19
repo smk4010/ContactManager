@@ -2,22 +2,29 @@ import AppDispatcher from '../dispatcher/AppDispatcher';
 import AppConstants from '../constants/AppConstants';
 import {EventEmitter} from 'events';
 
-const CHANGE_EVENT ='change';
+const CHANGE_EVENT = 'change';
 
 let _contacts = [];
 
 function setContacts(contacts){
-  _contacts = contacts;
+  _contacts = contacts.sort(SortByName);
 }
 
 function setContact(contact){
   _contacts.push(contact);
+  setContacts(_contacts);
 }
 
 function deleteContact(id){
   console.log('Deleting Contact '+id);
   let index = _contacts.findIndex(x => x.id === id);
   _contacts.splice(index, 1);
+}
+
+function SortByName(a, b){
+  var aName = a.name.toLowerCase();
+  var bName = b.name.toLowerCase();
+  return ((aName < bName) ? -1 : ((aName > bName) ? 1 : 0));
 }
 
 class AppStoreClass extends EventEmitter {

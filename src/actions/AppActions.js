@@ -16,7 +16,7 @@ export default {
         AppDispatcher.dispatch({
           actionType: AppConstants.RECIEVE_CONTACTS_ERROR,
           message: message
-        })
+        });
       });
   },
 
@@ -26,14 +26,14 @@ export default {
       .then(contact => {
         AppDispatcher.dispatch({
           actionType: AppConstants.RECIEVE_CONTACT,
-          contacts: contact
+          contact: contact
         });
       })
       .catch(message => {
         AppDispatcher.dispatch({
           actionType: AppConstants.RECIEVE_CONTACT_ERROR,
           message: message
-        })
+        });
       });
   },
 
@@ -50,7 +50,7 @@ export default {
         AppDispatcher.dispatch({
           actionType: AppConstants.DELETE_CONTACT_ERROR,
           message: message
-        })
+        });
       });
   }
 }
