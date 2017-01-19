@@ -16,7 +16,7 @@ export default {
         AppDispatcher.dispatch({
           actionType: AppConstants.RECIEVE_CONTACTS_ERROR,
           message: message
-        });
+        })
       });
   },
 
@@ -26,14 +26,31 @@ export default {
       .then(contact => {
         AppDispatcher.dispatch({
           actionType: AppConstants.RECIEVE_CONTACT,
-          contact: contact
+          contacts: contact
         });
       })
       .catch(message => {
         AppDispatcher.dispatch({
           actionType: AppConstants.RECIEVE_CONTACT_ERROR,
           message: message
+        })
+      });
+  },
+
+  deleteContact: (id) => {
+    ContactsAPI
+      .deleteContact('https://jsonplaceholder.typicode.com/users/'+id)
+      .then(contact => {
+        AppDispatcher.dispatch({
+          actionType: AppConstants.DELETE_CONTACT,
+          id: id
         });
+      })
+      .catch(message => {
+        AppDispatcher.dispatch({
+          actionType: AppConstants.DELETE_CONTACT_ERROR,
+          message: message
+        })
       });
   }
 }
